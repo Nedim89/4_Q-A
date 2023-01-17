@@ -1,26 +1,18 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+const Question = ({ title, info }) => {
+  const [showInfo, setShowInfo] = useState(false);
+  return (
+    <article className='question'>
+      <header>
+        <h4>{title}</h4>
+        <button className='btn' onClick={() => setShowInfo(!showInfo)}>
+          {showInfo ? <AiOutlineMinus /> : <AiOutlinePlus />}
+        </button>
+      </header>
+      {showInfo && <p>{info}</p>}
+    </article>
+  );
+};
 
-const SingleQuestion = ({id, title, info}) => {
-
-const [showInfo, setShowInfo] = useState(false);
-
-    return(
-        <>
-            <article>
-                <h2>{title}</h2>
-                { showInfo?
-                <>
-                <button onClick={()=>setShowInfo(false)}>-</button>
-                <p>{info}</p>
-                </> : 
-                <>
-                <button onClick={()=>setShowInfo(true)}>+</button>
-                </>
-                }
-                
-            </article>
-        </>
-    );
-}
-
-export default SingleQuestion;
+export default Question;
